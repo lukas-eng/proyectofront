@@ -8,7 +8,7 @@ function ParticipantList({ event, onBack }) {
 const fetchParticipants = async () => {
   try{
   const token = localStorage.getItem("token");
-  const res = await axios.get(`http://localhost:8000/api/olympics/participants/list/${event.id}`, {
+  const res = await axios.get(`${process.env.REACT_APP_API_URL}/olympics/participants/list/${event.id}`, {
     headers: { Authorization: token }
   });
 
@@ -31,7 +31,7 @@ const fetchParticipants = async () => {
   const handleDelete = async (id) => {
     try{
     const token = localStorage.getItem("token");
-    await axios.delete(`http://localhost:8000/api/olympics/participants/delete/${id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/olympics/participants/delete/${id}`, {
       headers: { Authorization: token }
     });
     fetchParticipants();
