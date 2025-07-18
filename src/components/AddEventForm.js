@@ -11,7 +11,7 @@ function AddEventForm({ onEventAdded }) {
     const fetchVenues = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:8000/api/olympics/venues", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/olympics/venues`, {
           headers: { Authorization: token }
         });
         setVenues(res.data.venues || res.data);
@@ -27,7 +27,7 @@ function AddEventForm({ onEventAdded }) {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      await axios.post("http://localhost:8000/api/olympics/events/create", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/olympics/events/create`, {
         name,
         date,
         venue_id: venueId
