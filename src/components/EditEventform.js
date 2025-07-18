@@ -12,7 +12,7 @@ function EditEventForm({ event, onBack, onUpdated }) {
     const fetchVenues = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:8000/api/olympics/venues", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/olympics/venues`, {
           headers: { Authorization: token }
         });
         setVenues(res.data.venues || res.data);
@@ -27,7 +27,7 @@ function EditEventForm({ event, onBack, onUpdated }) {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      await axios.put(`http://localhost:8000/api/olympics/events/edit/${event.id}`, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/olympics/events/edit/${event.id}`, {
         name,
         date,
         venue_id: venueId,
