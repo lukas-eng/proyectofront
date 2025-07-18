@@ -17,7 +17,7 @@ function AdminPanel() {
 
   const fetchEvents = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/olympics/events/list", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/olympics/events/list`, {
         headers: { Authorization: token }
       });
       setEvents(res.data.data || []);
@@ -31,7 +31,7 @@ function AdminPanel() {
   }, [fetchEvents]);
 
   const logout = async () => {
-    await axios.post("http://localhost:8000/api/olympics/logout", {}, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/olympics/logout`, {}, {
       headers: { Authorization: token }
     });
     localStorage.removeItem("token");
