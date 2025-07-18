@@ -13,7 +13,7 @@ function AddParticipantForm() {
     const fetchEvents = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:8000/api/olympics/events/list", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/olympics/events/list`, {
           headers: { Authorization: token }
         });
         setEvents(res.data.data || []); 
@@ -29,7 +29,7 @@ function AddParticipantForm() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:8000/api/olympics/participants/create", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/olympics/participants/create`, {
         fullname,
         email,
         phone,
